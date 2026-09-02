@@ -1,0 +1,898 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#e23b34">
+  <title>Движок — памятка Молодёжной палаты Преображенское</title>
+  <meta name="description" content="Памятка участникам Молодёжной палаты Преображенское: что фотографировать, что публиковать и какие материалы передавать ответственному для отчёта в «Движке».">
+  <style>
+    :root{
+      --bg:#f1efe7;
+      --paper:#faf9f5;
+      --ink:#171716;
+      --muted:#6c6961;
+      --line:#d2cfc5;
+      --red:#e23b34;
+      --red-dark:#c92e29;
+      --max:1380px;
+      --pad:clamp(18px,4vw,64px);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:95px}
+    body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Arial,"Helvetica Neue",sans-serif;overflow-x:hidden}
+    a{color:inherit;text-decoration:none}
+    button,input{font:inherit}
+    button{cursor:pointer}
+    .container{width:min(var(--max),100%);margin:auto;padding-inline:var(--pad)}
+    .section{padding:clamp(76px,9vw,130px) 0}
+    .eyebrow{margin:0 0 22px;text-transform:uppercase;letter-spacing:.14em;font-size:11px;font-weight:800}
+    .muted{color:var(--muted)}
+    em{font-style:normal;color:var(--red)}
+    .page-progress{position:fixed;z-index:150;left:0;right:0;top:0;height:3px}
+    .page-progress span{display:block;width:100%;height:100%;background:var(--red);transform:scaleX(0);transform-origin:left}
+
+    .site-header{
+      position:fixed;z-index:120;inset:0 0 auto;height:82px;padding:0 var(--pad);
+      display:flex;align-items:center;gap:34px;background:rgba(241,239,231,.94);
+      backdrop-filter:blur(15px);border-bottom:1px solid var(--line)
+    }
+    .brand{display:flex;align-items:center;gap:12px;margin-right:auto;min-width:0}
+    .brand__mark{display:grid;place-items:center;width:42px;height:42px;background:var(--red);color:#fff;font-size:18px;font-weight:900;letter-spacing:-.06em}
+    .brand b,.brand small{display:block}
+    .brand b{font-size:12px;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}
+    .brand small{font-size:10px;color:var(--muted);white-space:nowrap}
+    .main-nav{display:flex;gap:24px;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.04em}
+    .main-nav a:hover{color:var(--red)}
+    .header-badge{border:1px solid var(--ink);padding:10px 13px;font-size:10px;font-weight:800;text-transform:uppercase;white-space:nowrap}
+    .menu-button{display:none;width:42px;height:42px;border:0;background:none}
+    .menu-button span{display:block;height:2px;background:var(--ink);margin:5px}
+
+    .hero{
+      min-height:100svh;padding-top:82px;background:#151514;color:#fff;position:relative;
+      display:flex;align-items:flex-end;overflow:hidden
+    }
+    .hero:before{
+      content:"";position:absolute;inset:82px 0 0;
+      background:
+        radial-gradient(circle at 74% 28%,rgba(226,59,52,.55),transparent 0 21%,transparent 22%),
+        linear-gradient(135deg,transparent 0 60%,rgba(226,59,52,.18) 60% 72%,transparent 72%),
+        repeating-linear-gradient(90deg,transparent 0 74px,rgba(255,255,255,.035) 75px 76px),
+        repeating-linear-gradient(0deg,transparent 0 74px,rgba(255,255,255,.025) 75px 76px);
+      opacity:.95
+    }
+    .hero:after{
+      content:"ПАМЯТКА ДЛЯ УЧАСТНИКОВ · РЕДАКЦИЯ ПО МЕТОДИЧКЕ ИЮЛЯ 2025";
+      position:absolute;right:var(--pad);top:120px;color:#888;font-size:9px;letter-spacing:.11em;text-transform:uppercase
+    }
+    .hero__content{position:relative;z-index:1;padding:100px 0 125px}
+    .hero h1{max-width:1050px;margin:0;font-size:clamp(58px,8vw,122px);line-height:.82;letter-spacing:-.075em}
+    .hero__lead{max-width:720px;margin:42px 0 0;font-size:clamp(17px,1.5vw,22px);color:#d9d9d7}
+    .hero__note{
+      max-width:760px;margin-top:34px;padding:18px 20px;border-left:5px solid var(--red);
+      background:rgba(255,255,255,.07);font-size:14px
+    }
+    .hero__ticker{
+      position:absolute;z-index:2;bottom:0;left:0;right:0;display:flex;justify-content:center;align-items:center;
+      gap:18px;padding:18px var(--pad);background:var(--red);text-transform:uppercase;font-size:10px;font-weight:800;letter-spacing:.12em;white-space:nowrap
+    }
+    .hero__ticker i{display:block;width:5px;height:5px;border-radius:50%;background:var(--ink)}
+
+    .intro{background:var(--paper)}
+    .intro__grid{display:grid;grid-template-columns:.55fr 1.45fr;gap:8vw}
+    .intro h2{max-width:980px;margin:0;font-size:clamp(48px,7vw,100px);line-height:.92;letter-spacing:-.065em}
+    .intro__text{max-width:760px}
+    .intro__text>p{font-size:clamp(18px,1.8vw,24px);color:var(--muted);margin:0 0 24px}
+    .rule-box{margin-top:38px;border:1px solid var(--ink);background:var(--bg);padding:24px}
+    .rule-box strong{display:block;font-size:19px;margin-bottom:7px}
+
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);margin-top:80px}
+    .stats>div{min-height:180px;padding:24px;display:flex;flex-direction:column;justify-content:flex-end;border-right:1px solid var(--line)}
+    .stats>div:last-child{border:0}
+    .stats strong{font-size:clamp(48px,6vw,82px);line-height:.82;letter-spacing:-.07em;color:var(--red)}
+    .stats span{margin-top:18px;font-size:11px;text-transform:uppercase;letter-spacing:.06em}
+
+    .section-heading{display:grid;grid-template-columns:1fr 1fr;gap:8vw;align-items:end;margin-bottom:58px}
+    .section-heading h2{margin:0;font-size:clamp(52px,7vw,96px);line-height:.84;letter-spacing:-.07em}
+    .section-heading>p{margin:0;color:var(--muted);font-size:18px;max-width:560px}
+
+    .workflow{background:var(--bg)}
+    .flow-list{border-top:1px solid var(--ink)}
+    .flow-item{display:grid;grid-template-columns:100px .8fr 1.4fr;gap:4vw;padding:34px 0;border-bottom:1px solid var(--line)}
+    .flow-item>span{color:var(--red);font-size:12px;font-weight:800}
+    .flow-item h3{margin:0;font-size:clamp(25px,3vw,38px);letter-spacing:-.04em}
+    .flow-item p{margin:0;color:var(--muted)}
+    .flow-item ul{margin:10px 0 0;padding-left:18px;color:var(--muted)}
+
+    .send{background:#dedbd2}
+    .send-grid{display:grid;grid-template-columns:.75fr 1.25fr;gap:7vw}
+    .send h2{font-size:clamp(48px,6.5vw,90px);line-height:.9;letter-spacing:-.065em;margin:0}
+    .template{background:var(--paper);border:1px solid var(--ink);box-shadow:10px 10px 0 var(--red);padding:26px}
+    .template pre{white-space:pre-wrap;margin:0;font:13px/1.65 ui-monospace,SFMono-Regular,Consolas,monospace}
+    .copy-button{margin-top:22px;border:0;background:var(--ink);color:#fff;padding:14px 18px;font-weight:800;font-size:12px}
+    .copy-button:hover{background:var(--red)}
+    .copy-status{margin-left:12px;font-size:11px;color:var(--muted)}
+
+    .catalog{background:var(--paper)}
+    .toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:30px}
+    .filter{border:1px solid var(--ink);background:transparent;padding:10px 13px;font-size:11px;font-weight:800;text-transform:uppercase}
+    .filter.is-active,.filter:hover{background:var(--ink);color:#fff}
+    .search{margin-left:auto;min-width:min(340px,100%);padding:11px 14px;border:1px solid var(--line);background:#fff}
+    .activity-list{border-top:1px solid var(--ink)}
+    .activity{border-bottom:1px solid var(--line)}
+    .activity summary{
+      list-style:none;display:grid;grid-template-columns:70px 1fr auto;gap:24px;align-items:center;
+      padding:28px 4px;cursor:pointer
+    }
+    .activity summary::-webkit-details-marker{display:none}
+    .activity__num{font-size:12px;color:var(--red);font-weight:800}
+    .activity h3{margin:0;font-size:clamp(22px,2.4vw,34px);letter-spacing:-.04em}
+    .activity__meta{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+    .tag{border:1px solid var(--line);padding:6px 8px;font-size:9px;text-transform:uppercase;font-weight:800;letter-spacing:.05em}
+    .tag--red{border-color:var(--red);color:var(--red)}
+    .activity summary:after{content:"+";font-size:28px;grid-column:4}
+    .activity[open] summary:after{content:"×";color:var(--red)}
+    .activity__body{display:grid;grid-template-columns:1fr 1fr;gap:30px;padding:0 4px 34px 94px}
+    .activity__body h4{font-size:11px;letter-spacing:.08em;text-transform:uppercase;margin:0 0 10px}
+    .activity__body ul{margin:0;padding-left:18px;color:var(--muted)}
+    .activity__body li+li{margin-top:7px}
+    .activity__accent{background:var(--bg);border-left:4px solid var(--red);padding:18px;margin-top:18px;font-size:13px}
+    .activity[hidden]{display:none}
+
+    .photo{background:var(--ink);color:#fff}
+    .photo .section-heading>p{color:#aaa}
+    .photo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#444;border:1px solid #444}
+    .photo-card{min-height:220px;background:#20201f;padding:26px;display:flex;flex-direction:column;justify-content:flex-end}
+    .photo-card span{color:var(--red);font-size:11px;font-weight:800}
+    .photo-card h3{font-size:24px;margin:8px 0 5px}
+    .photo-card p{margin:0;color:#aaa;font-size:13px}
+
+    .warning{background:var(--red);color:#fff}
+    .warning h2{margin:0;font-size:clamp(56px,9vw,128px);line-height:.82;letter-spacing:-.075em}
+    .warning h2 em{color:var(--ink)}
+    .warning-grid{display:grid;grid-template-columns:1fr 1fr;gap:8vw;margin-top:50px}
+    .warning-grid p{font-size:18px;margin:0}
+    .warning-grid ul{margin:0;padding-left:18px}
+
+    .faq{background:var(--bg)}
+    .faq-list{border-top:1px solid var(--ink)}
+    .faq details{border-bottom:1px solid var(--line)}
+    .faq summary{list-style:none;cursor:pointer;padding:24px 0;font-size:21px;font-weight:800;display:flex;justify-content:space-between;gap:20px}
+    .faq summary::-webkit-details-marker{display:none}
+    .faq summary:after{content:"+";color:var(--red);font-size:25px}
+    .faq details[open] summary:after{content:"×"}
+    .faq details p{max-width:850px;margin:0 0 26px;color:var(--muted)}
+
+    .footer{padding:70px var(--pad) 32px;background:var(--ink);color:#fff}
+    .footer__top{display:grid;grid-template-columns:1.5fr 1fr;gap:8vw}
+    .footer h2{margin:0;font-size:clamp(36px,5vw,66px);line-height:.92;letter-spacing:-.055em}
+    .footer p{color:#aaa;max-width:620px}
+    .footer__bottom{border-top:1px solid #444;padding-top:22px;margin-top:55px;display:flex;justify-content:space-between;gap:20px;color:#888;font-size:10px}
+
+    [data-reveal]{opacity:0;transform:translateY(24px);transition:.65s}
+    .is-visible{opacity:1;transform:none}
+
+    @media(max-width:1050px){
+      .main-nav{position:fixed;inset:82px 0 0;background:var(--bg);padding:35px var(--pad);flex-direction:column;gap:0;transform:translateX(100%);transition:.3s}
+      .main-nav.is-open{transform:none}
+      .main-nav a{padding:16px 0;border-bottom:1px solid var(--line);font-size:18px}
+      .menu-button{display:block}
+      .header-badge{margin-left:auto}
+      .stats{grid-template-columns:1fr 1fr}
+      .stats>div{border-bottom:1px solid var(--line)}
+      .send-grid{grid-template-columns:1fr}
+      .photo-grid{grid-template-columns:1fr 1fr}
+    }
+    @media(max-width:760px){
+      :root{--pad:20px}
+      html{scroll-padding-top:72px}
+      .site-header{height:70px;padding-inline:14px;gap:8px}
+      .brand__mark{width:36px;height:36px;font-size:15px}
+      .brand b{font-size:10px}
+      .brand small{display:none}
+      .header-badge{display:none}
+      .main-nav{inset:70px 0 0;padding-top:25px}
+      .hero{padding-top:70px;min-height:760px}
+      .hero:before{inset:70px 0 0}
+      .hero:after{top:100px;left:20px;right:auto;max-width:270px}
+      .hero__content{padding:170px 0 120px}
+      .hero h1{font-size:clamp(50px,15vw,76px)}
+      .hero__lead{font-size:16px}
+      .hero__ticker{justify-content:flex-start;overflow:hidden}
+      .intro__grid,.section-heading,.warning-grid,.footer__top{grid-template-columns:1fr;gap:28px}
+      .intro h2,.section-heading h2{font-size:clamp(46px,13vw,70px)}
+      .stats{grid-template-columns:1fr 1fr;margin-top:50px}
+      .stats>div{min-height:130px;padding:16px}
+      .stats strong{font-size:50px}
+      .flow-item{grid-template-columns:42px 1fr;padding:25px 0;gap:12px}
+      .flow-item p,.flow-item ul{grid-column:2}
+      .template{box-shadow:6px 6px 0 var(--red);padding:18px}
+      .toolbar{align-items:stretch}
+      .filter{flex:1 1 auto}
+      .search{margin-left:0;width:100%}
+      .activity summary{grid-template-columns:35px 1fr auto;gap:10px}
+      .activity__meta{grid-column:2;justify-content:flex-start;margin-top:5px}
+      .activity summary:after{grid-column:3;grid-row:1/3}
+      .activity__body{grid-template-columns:1fr;padding:0 0 30px 45px}
+      .photo-grid{grid-template-columns:1fr}
+      .photo-card{min-height:175px}
+      .warning h2{font-size:clamp(54px,16vw,86px)}
+      .footer__bottom{flex-direction:column}
+    }
+    @media(max-width:430px){
+      .stats{grid-template-columns:1fr}
+      .stats>div{border-right:0}
+      .activity__body{padding-left:0}
+      .activity summary{grid-template-columns:28px 1fr auto}
+    }
+    @media(prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}
+      *,*:before,*:after{transition:none!important}
+      [data-reveal]{opacity:1;transform:none}
+    }
+  </style>
+</head>
+<body>
+  <div class="page-progress" aria-hidden="true"><span id="progress"></span></div>
+
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Наверх">
+      <span class="brand__mark">МП</span>
+      <span>
+        <b>Преображенское</b>
+        <small>Памятка по «Движку»</small>
+      </span>
+    </a>
+
+    <nav class="main-nav" id="mainNav">
+      <a href="#how">Как работаем</a>
+      <a href="#send">Что отправлять</a>
+      <a href="#activities">Активности</a>
+      <a href="#photos">Фото</a>
+      <a href="#faq">Вопросы</a>
+    </nav>
+
+    <span class="header-badge">Для всей команды</span>
+    <button class="menu-button" id="menuButton" aria-label="Открыть меню" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero__content">
+        <p class="eyebrow">Молодёжная палата района Преображенское</p>
+        <h1>ДВИЖОК.<br><em>БЕЗ ПОТЕРИ</em><br>БАЛЛОВ.</h1>
+        <p class="hero__lead">
+          Короткая рабочая памятка для участников: что сделать до мероприятия, какие фото собрать,
+          что опубликовать и что передать ответственному за отчётность.
+        </p>
+        <div class="hero__note">
+          <strong>Важно:</strong> отчёты на портале «Движок» загружает назначенный ответственный.
+          Ваша задача — вовремя собрать и передать ему полный комплект материалов.
+        </div>
+      </div>
+      <div class="hero__ticker" aria-hidden="true">
+        <span>Фото</span><i></i><span>Участники</span><i></i><span>Символика</span><i></i>
+        <span>Пост-релиз</span><i></i><span>Сроки</span><i></i><span>Баллы</span>
+      </div>
+    </section>
+
+    <section class="section intro" id="about">
+      <div class="container">
+        <div class="intro__grid" data-reveal>
+          <p class="eyebrow">Что нужно запомнить</p>
+          <div class="intro__text">
+            <h2>НЕ НАДО ЗНАТЬ ВЕСЬ ПОРТАЛ. НАДО <em>СОБРАТЬ ДОКАЗАТЕЛЬСТВА.</em></h2>
+            <p>
+              Для отчёта важны не просто красивые фотографии. Нужны материалы, по которым видно:
+              кто участвовал, что именно делала Молодёжная палата, сколько было людей, как проходило
+              мероприятие и использовалась ли символика.
+            </p>
+            <div class="rule-box">
+              <strong>Главное правило команды</strong>
+              После мероприятия не расходиться, пока не сделаны общий кадр, фото организаторов,
+              фото процесса и кадры с символикой.
+            </div>
+          </div>
+        </div>
+
+        <div class="stats" data-reveal>
+          <div><strong>5</strong><span>дней — частый срок для пост-релиза</span></div>
+          <div><strong>5+</strong><span>фото требуется во многих групповых активностях</span></div>
+          <div><strong>15</strong><span>жителей — минимум для мероприятия для жителей</span></div>
+          <div><strong>2+</strong><span>организатора МП — частое обязательное условие</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section workflow" id="how">
+      <div class="container">
+        <div class="section-heading" data-reveal>
+          <h2>КАК <em>РАБОТАЕМ</em></h2>
+          <p>Четыре этапа. Если каждый участник соблюдает их, ответственному не приходится после мероприятия искать фото, фамилии и подтверждения.</p>
+        </div>
+
+        <div class="flow-list">
+          <article class="flow-item" data-reveal>
+            <span>01 / ДО</span>
+            <h3>Уточнить тип активности</h3>
+            <div>
+              <p>До мероприятия уточняем у председателя/ответственного, под какую активность оно пойдёт.</p>
+              <ul>
+                <li>нужен ли анонс заранее;</li>
+                <li>сколько должно быть жителей и организаторов;</li>
+                <li>какая символика обязательна;</li>
+                <li>нужно ли согласование с куратором.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="flow-item" data-reveal>
+            <span>02 / ВО ВРЕМЯ</span>
+            <h3>Снять не только «красиво»</h3>
+            <div>
+              <p>Делаем доказательные кадры: общий план, процесс, организаторы, взаимодействие с жителями, символика.</p>
+              <ul>
+                <li>каждый заявленный организатор должен быть виден на фото;</li>
+                <li>для ряда активностей нужны технические фото подготовки;</li>
+                <li>фотографии должны быть нормального качества.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="flow-item" data-reveal>
+            <span>03 / ПОСЛЕ</span>
+            <h3>Собрать материалы в один пакет</h3>
+            <div>
+              <p>Не отправляйте всё кусками в течение недели. Соберите одним сообщением/папкой: данные, список людей, фото, ссылки и дополнительные подтверждения.</p>
+            </div>
+          </article>
+
+          <article class="flow-item" data-reveal>
+            <span>04 / СРОК</span>
+            <h3>Не затягивать с пост-релизом</h3>
+            <div>
+              <p>По большинству активностей пост-релиз ВКонтакте должен быть опубликован не позднее 5 дней после мероприятия. Для окружных мероприятий анонс нужен заранее — минимум за неделю.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section send" id="send">
+      <div class="container send-grid">
+        <div data-reveal>
+          <p class="eyebrow">После мероприятия</p>
+          <h2>ЧТО ОТПРАВИТЬ <em>ОТВЕТСТВЕННОМУ</em></h2>
+          <p class="muted">
+            Универсальный шаблон. Точный набор зависит от типа активности, но с таким пакетом
+            обычно уже можно нормально собрать отчёт.
+          </p>
+        </div>
+
+        <div class="template" data-reveal>
+<pre id="reportTemplate">Название мероприятия:
+Дата и время:
+Место:
+
+Тип активности (если известен):
+
+Количество гостей / жителей:
+Организаторы от МП:
+ФИО + статус каждого (Член / Резервист / Претендент):
+
+Что конкретно делала наша Молодёжная палата:
+
+Ссылка на анонс:
+Ссылка на пост-релиз:
+Ссылка на пост организатора / партнёра:
+
+Фото:
+— общий план;
+— участники;
+— организаторы;
+— процесс;
+— взаимодействие с жителями;
+— технические фото подготовки;
+— символика.
+
+Видео:
+Дополнительные условия / важные гости:</pre>
+          <button class="copy-button" type="button" id="copyTemplate">Скопировать шаблон</button>
+          <span class="copy-status" id="copyStatus" aria-live="polite"></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section catalog" id="activities">
+      <div class="container">
+        <div class="section-heading" data-reveal>
+          <h2>ТИПЫ <em>АКТИВНОСТЕЙ</em></h2>
+          <p>Не инструкция по нажатию кнопок в «Движке», а условия, которые должны знать участники до и во время мероприятия.</p>
+        </div>
+
+        <div class="toolbar" data-reveal>
+          <button class="filter is-active" data-filter="all">Все</button>
+          <button class="filter" data-filter="group">Групповые</button>
+          <button class="filter" data-filter="individual">Индивидуальные</button>
+          <input class="search" id="activitySearch" type="search" placeholder="Найти активность…">
+        </div>
+
+        <div class="activity-list" id="activityList">
+          <details class="activity" data-kind="group" data-title="типовое мероприятие жители">
+            <summary>
+              <span class="activity__num">01</span>
+              <h3>Типовое мероприятие для жителей</h3>
+              <span class="activity__meta"><span class="tag tag--red">20 баллов</span><span class="tag">Групповая</span></span>
+            </summary>
+            <div class="activity__body">
+              <div>
+                <h4>Обязательно</h4>
+                <ul>
+                  <li>мероприятие организует МП; соорганизаторы допустимы;</li>
+                  <li>минимум 15 жителей;</li>
+                  <li>минимум 2 Члена МП/Резервиста среди организаторов;</li>
+                  <li>организаторов МП — не более 50% от гостей и не более 15 человек;</li>
+                  <li>пост-релиз в группе МП ВКонтакте.</li>
+                </ul>
+              </div>
+              <div>
+                <h4>Материалы</h4>
+                <ul>
+                  <li>минимум 5 технических фото;</li>
+                  <li>в пост-релизе минимум 5 фото;</li>
+                  <li>общий план, гости, организаторы, процесс, яркие моменты;</li>
+                  <li>минимум у 2 организаторов — носимая символика.</li>
+                </ul>
+                <div class="activity__accent">Доп. баллы: видео, дополнительные гости, анонс, сторонняя публикация, дополнительная и стационарная символика.</div>
+              </div>
+            </div>
+          </details>
+
+          <details class="activity" data-kind="group" data-title="собственное мероприятие жители">
+            <summary>
+              <span class="activity__num">02</span>
+              <h3>Собственное мероприятие для жителей</h3>
+              <span class="activity__meta"><span class="tag tag--red">20 баллов</span><span class="tag">Групповая</span></span>
+            </summary>
+            <div class="activity__body">
+              <div>
+                <h4>Обязательно</h4>
+                <ul>
+                  <li>идея разработана самой Молодёжной палатой;</li>
+                  <li>минимум 15 жителей;</li>
+                  <li>минимум 2 Члена МП/Резервиста в организации;</li>
+                  <li>обязательный пост-релиз ВК;</li>
+                  <li>одно мероприятие в день для одной и той же аудитории.</li>
+                </ul>
+              </div>
+              <div>
+                <h4>Материалы</h4>
+                <ul>
+                  <li>минимум 5 технических фотографий;</li>
+                  <li>не менее 5 фото в пост-релизе;</li>
+                  <li>общий кадр гостей и организаторов;</li>
+                  <li>символика минимум у 2 организаторов.</li>
+                </ul>
+                <div class="activity__accent">Пост-релиз — в течение 5 дней. Доп. баллы аналогичны типовому мероприятию.</div>
+              </div>
+            </div>
+          </details>
+
+          <details class="activity" data-kind="group" data-title="мероприятие для актива командообразование">
+            <summary>
+              <span class="activity__num">03</span>
+              <h3>Мероприятие для актива МП</h3>
+              <span class="activity__meta"><span class="tag tag--red">10 баллов</span><span class="tag">до 2 / месяц</span></span>
+            </summary>
+            <div class="activity__body">
+              <div>
+                <h4>Условия</h4>
+                <ul>
+                  <li>минимум 5 Членов/Резервистов/Претендентов;</li>
+                  <li>если в палате меньше 5 человек — присутствуют все Члены и Резервисты;</li>
+                  <li>пост-релиз ВК обязателен;</li>
+                  <li>простая встреча «поесть/попить» не считается.</li>
+                </ul>
+              </div>
+              <div>
+                <h4>Фото</h4>
+                <ul>
+                  <li>минимум 2 фото, где видны все заявленные участники;</li>
+                  <li>общий план и процесс;</li>
+                  <li>стационарная символика либо общее фото с флагом.</li>
+                </ul>
+                <div class="activity__accent">Если мероприятие проходит в ЦМП — заранее согласовать с куратором аудиторию/чилл-зону.</div>
+              </div>
+            </div>
+          </details>
+
+          <details class="activity" data-kind="group" data-title="социальная патриотическая экологическая акция">
+            <summary>
+              <span class="activity__num">04</span>
+              <h3>Социальная / патриотическая / экологическая акция</h3>
+              <span class="activity__meta"><span class="tag tag--red">6 баллов</span><span class="tag">до 5 каждой / месяц</span></span>
+            </summary>
+            <div class="activity__body">
+              <div>
+                <h4>Условия</h4>
+                <ul>
+                  <li>организуется Молодёжной палатой;</li>
+                  <li>минимум 2 Члена МП/Резервиста среди организаторов;</li>
+                  <li>обязательный пост-релиз ВК;</li>
+                  <li>минимум 5 фото в публикации.</li>
+                </ul>
+              </div>
+              <div>
+                <h4>Фото и бонусы</h4>
+                <ul>
+                  <li>общий план, процесс, ключевые моменты, организаторы;</li>
+                  <li>минимум у 1 организатора — символика;</li>
+                  <li>видео даёт дополнительные баллы;</li>
+                  <li>за дополнительных организаторов также возможны бонусные баллы.</li>
+                </ul>
+              </div>
+            </div>
+          </details>
+
+          <details class="activity" data-kind="group" data-title="заседание молодежной палаты">
+            <summary>
+              <span class="activity__num">05</span>
+              <h3>Заседание Молодёжной палаты</h3>
+              <span class="activity__meta"><span class="tag tag--red">10 баллов</span><span class="tag">до 2 / месяц</span></span>
+            </summary>
+            <div class="activity__body">
+              <div>
+                <h4>Условия</h4>
+                <ul>
+                  <li>минимум 5 участников МП/Резервистов/Претендентов;</li>
+                  <li>проводится в помещении;</li>
+                  <li>не проводится в точке общественного питания;</li>
+                  <li>обязательный пост-релиз ВК.</li>
+                </ul>
+              </div>
+              <div>
+                <h4>Фото</h4>
+                <ul>
+                  <li>минимум 2 фото, где видны все заявленные участники;</li>
+                  <li>стационарная символика либо общее фото с флагом;</li>
+                  <li>при участии депутата/главы управы/заместителя главы управы возможны +10 баллов.</li>
+                </ul>
+              </div>
+            </div>
+          </details>
+
+          <details class="activity" data-kind="group" data-title="районная повестка управа гбу сдмо нко">
+            <summary>
+              <span class="activity__num">06</span>
+              <h3>В районной повестке</h3>
+              <span class="activity__meta"><span class="tag tag--red">16 баллов</span><span class="tag">до 10 / месяц</span></span>
+            </summary>
+            <div class="activity__body">
+              <div>
+                <h4>Когда подходит</h4>
+                <ul>
+                  <li>мероприятие организует управа / ГБУ / СДМО / НКО / другая районная организация;</li>
+                  <li>МП выступает помощником или соорганизатором;</li>
+                  <li>минимум 1 Член МП/Резервист участвует как организатор.</li>
+                </ul>
+              </div>
+              <div>
+                <h4>Что обязательно собрать</h4>
+                <ul>
+                  <li>чёткое описание, что именно делали активисты МП;</li>
+                  <li>ссылку на пост организатора, где МП упомянута как помощник/соорганизатор;</li>
+                  <li>минимум 5 технических фото;</li>
+                  <li>пост-релиз МП минимум с 3 фото.</li>
+                </ul>
+                <div class="activity__accent">Стационарная символика может дать дополнительные 4 балла.</div>
+              </div>
+            </div>
+          </details>
+
+          <details class="activity" data-kind="group" data-title="окружное мероприятие мп жители">
+            <summary>
+              <span class="activity__num">07</span>
+              <h3>Окружное мероприятие, организованное МП</h3>
+              <span class="activity__meta"><span class="tag tag--red">20 баллов</span><span class="tag">до 3 / квартал</span></span>
+            </summary>
+            <div class="activity__body">
+              <div>
+                <h4>До мероприятия</h4>
+                <ul>
+                  <li>сообщить куратору АО минимум за 2 недели;</li>
+                  <li>анонс ВК — минимум за неделю;</li>
+                  <li>минимум 30 жителей;</li>
+                  <li>стационарная символика обязательна.</li>
+                </ul>
+              </div>
+              <div>
+                <h4>После</h4>
+                <ul>
+                  <li>пост-релиз минимум с 5 фото;</li>
+                  <li>в день мероприятия организаторы фиксируются через CRM куратором;</li>
+                  <li>доп. баллы возможны за публикацию префектуры, видео, 70+ гостей, важных гостей и тайминг.</li>
+                </ul>
+              </div>
+            </div>
+          </details>
+
+          <details class="activity" data-kind="individual" data-title="мероприятия молодежного парламента личный вк молпарлам">
+            <summary>
+              <span class="activity__num">08</span>
+              <h3>Мероприятия Молодёжного парламента</h3>
+              <span class="activity__meta"><span class="tag tag--red">10 баллов / пост</span><span class="tag">Индивидуальная</span></span>
+            </summary>
+            <div class="activity__body">
+              <div>
+                <h4>Для Члена МП / Резервиста</h4>
+                <ul>
+                  <li>личный пост ВКонтакте о посещённом окружном мероприятии или мероприятии ЦМП;</li>
+                  <li>хештег #Молпарлам;</li>
+                  <li>отметка официального сообщества Молодёжного парламента Москвы;</li>
+                  <li>публикация в течение 5 дней.</li>
+                </ul>
+              </div>
+              <div>
+                <h4>Фото</h4>
+                <ul>
+                  <li>подтверждение личного присутствия;</li>
+                  <li>общее фото мероприятия;</li>
+                  <li>качественные снимки;</li>
+                  <li>символика на участнике может дать +2 балла.</li>
+                </ul>
+              </div>
+            </div>
+          </details>
+
+          <details class="activity" data-kind="individual" data-title="я в территории район мероприятие обход заседание">
+            <summary>
+              <span class="activity__num">09</span>
+              <h3>Я в территории</h3>
+              <span class="activity__meta"><span class="tag tag--red">5 баллов</span><span class="tag">до 10 / месяц</span></span>
+            </summary>
+            <div class="activity__body">
+              <div>
+                <h4>Примеры</h4>
+                <ul>
+                  <li>обход главы управы;</li>
+                  <li>заседание СДМО;</li>
+                  <li>открытие районного объекта;</li>
+                  <li>другое районное событие.</li>
+                </ul>
+              </div>
+              <div>
+                <h4>Что собрать</h4>
+                <ul>
+                  <li>описание характера своего участия;</li>
+                  <li>фото, подтверждающее присутствие;</li>
+                  <li>не менее 2 фото реальной вовлечённости;</li>
+                  <li>мероприятие другой МП в эту активность не засчитывается.</li>
+                </ul>
+              </div>
+            </div>
+          </details>
+
+          <details class="activity" data-kind="group" data-title="презентация молодежного парламента школа вуз форум">
+            <summary>
+              <span class="activity__num">10</span>
+              <h3>Презентация Молодёжного парламента</h3>
+              <span class="activity__meta"><span class="tag tag--red">15 баллов</span><span class="tag">до 5 / месяц</span></span>
+            </summary>
+            <div class="activity__body">
+              <div>
+                <h4>Условия</h4>
+                <ul>
+                  <li>можно проводить в образовательном учреждении, ГБУ, на форуме, выставке и т. д.;</li>
+                  <li>обязательны символика и материалы от куратора;</li>
+                  <li>минимум 15 слушателей.</li>
+                </ul>
+              </div>
+              <div>
+                <h4>Пост-релиз</h4>
+                <ul>
+                  <li>минимум 4 фото;</li>
+                  <li>2 фото — видно презентацию;</li>
+                  <li>2 фото — видны организаторы МП;</li>
+                  <li>должно быть видно общее количество участников;</li>
+                  <li>хотя бы у 1 организатора — носимая символика.</li>
+                </ul>
+              </div>
+            </div>
+          </details>
+
+          <details class="activity" data-kind="group" data-title="интеграция новичка претендент">
+            <summary>
+              <span class="activity__num">11</span>
+              <h3>Интеграция новичка</h3>
+              <span class="activity__meta"><span class="tag tag--red">10 баллов</span><span class="tag">Председатель / И.О.</span></span>
+            </summary>
+            <div class="activity__body">
+              <div>
+                <h4>Условия</h4>
+                <ul>
+                  <li>новичок уже прошёл очное собеседование в ЦМП и является Претендентом;</li>
+                  <li>встреча с Председателем/И.О. проходит очно;</li>
+                  <li>если встреча в ЦМП — заранее согласовать с куратором.</li>
+                </ul>
+              </div>
+              <div>
+                <h4>Для отчёта</h4>
+                <ul>
+                  <li>суть встречи;</li>
+                  <li>результат встречи;</li>
+                  <li>дальнейший план интеграции новичка;</li>
+                  <li>фото, подтверждающее встречу.</li>
+                </ul>
+              </div>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section photo" id="photos">
+      <div class="container">
+        <div class="section-heading" data-reveal>
+          <h2>ФОТО, КОТОРЫЕ <em>СПАСАЮТ ОТЧЁТ</em></h2>
+          <p>Если не знаете, что именно понадобится — снимите этот набор. Лучше иметь лишние исходники, чем после мероприятия обнаружить, что обязательного кадра нет.</p>
+        </div>
+
+        <div class="photo-grid">
+          <article class="photo-card" data-reveal><span>01</span><h3>Общий план</h3><p>Чтобы было понятно количество людей и масштаб.</p></article>
+          <article class="photo-card" data-reveal><span>02</span><h3>Общее фото</h3><p>Участники и организаторы, желательно одним кадром.</p></article>
+          <article class="photo-card" data-reveal><span>03</span><h3>Организаторы</h3><p>Каждый заявленный человек должен быть виден.</p></article>
+          <article class="photo-card" data-reveal><span>04</span><h3>Процесс</h3><p>Не позирование — реальная работа и проведение активности.</p></article>
+          <article class="photo-card" data-reveal><span>05</span><h3>Технические кадры</h3><p>Подготовка, регистрация, монтаж, материалы, взаимодействие.</p></article>
+          <article class="photo-card" data-reveal><span>06</span><h3>Символика</h3><p>Одежда Молпарламента, флаг, виндер, ролл-ап, баннер или маскот — по условиям активности.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section warning">
+      <div class="container">
+        <p class="eyebrow">Не теряем баллы</p>
+        <h2>НЕ «ПОТОМ<br>ДОСНИМЕМ». <em>ПОТОМ УЖЕ ПОЗДНО.</em></h2>
+        <div class="warning-grid">
+          <p>
+            Баллы по групповым активностям получают только те Члены МП и Резервисты,
+            которые реально участвовали и подтверждаются материалами мероприятия.
+          </p>
+          <ul>
+            <li>не заявляйте человека, которого фактически не было;</li>
+            <li>не отправляйте сфальсифицированные отчёты;</li>
+            <li>следите за сроками публикаций;</li>
+            <li>сохраняйте оригиналы фото до подтверждения отчёта.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section faq" id="faq">
+      <div class="container">
+        <div class="section-heading" data-reveal>
+          <h2>КОРОТКО <em>О ВАЖНОМ</em></h2>
+          <p>Ответы на вопросы, которые чаще всего возникают после мероприятия.</p>
+        </div>
+        <div class="faq-list">
+          <details>
+            <summary>Нужно ли мне самому заходить в «Движок»?</summary>
+            <p>Для внутреннего процесса нашей команды — нет, если речь идёт о передаче материалов по мероприятию: отчёт загружает назначенный ответственный. Но некоторые индивидуальные активности относятся именно к личной активности Члена МП/Резервиста — их порядок отдельно уточняйте у ответственного.</p>
+          </details>
+          <details>
+            <summary>Telegram-пост считается пост-релизом?</summary>
+            <p>По методичке для большинства перечисленных групповых активностей обязательный пост-релиз должен быть опубликован в группе Молодёжной палаты ВКонтакте. Telegram можно использовать дополнительно.</p>
+          </details>
+          <details>
+            <summary>Сколько времени есть на пост-релиз?</summary>
+            <p>Для большинства активностей в методичке установлен срок до 5 дней после проведения мероприятия. У окружного мероприятия есть ещё предварительное условие: анонс минимум за неделю.</p>
+          </details>
+          <details>
+            <summary>Какая символика засчитывается?</summary>
+            <p>Носимая: манишки, футболки, толстовки, рубашки, бомберы. Стационарная: флаги, виндеры, ролл-апы, баннеры, маскот. Конкретное требование зависит от активности.</p>
+          </details>
+          <details>
+            <summary>Что делать, если не уверены, под какую активность идёт мероприятие?</summary>
+            <p>Не гадать. До мероприятия уточнить у председателя или ответственного за отчётность — от типа активности зависят минимальное количество людей, фото, анонс, символика и согласования.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__top">
+      <div>
+        <p class="eyebrow">Молодёжная палата Преображенское</p>
+        <h2>СОБРАЛИ МАТЕРИАЛЫ — <em>ОТЧЁТ СОБЕРУТ.</em></h2>
+      </div>
+      <div>
+        <p>
+          Памятка собрана по методическим указаниям портала «Движок»,
+          редакция от июля 2025 года. При изменении официальной методики
+          требования необходимо обновить.
+        </p>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>Памятка для внутреннего использования команды</span>
+      <span>МП Преображенское</span>
+    </div>
+  </footer>
+
+  <script>
+    const menuButton = document.getElementById('menuButton');
+    const mainNav = document.getElementById('mainNav');
+    menuButton.addEventListener('click', () => {
+      const open = mainNav.classList.toggle('is-open');
+      menuButton.setAttribute('aria-expanded', String(open));
+    });
+    mainNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      mainNav.classList.remove('is-open');
+      menuButton.setAttribute('aria-expanded', 'false');
+    }));
+
+    const progress = document.getElementById('progress');
+    const updateProgress = () => {
+      const h = document.documentElement;
+      const max = h.scrollHeight - h.clientHeight;
+      const value = max > 0 ? h.scrollTop / max : 0;
+      progress.style.transform = `scaleX(${value})`;
+    };
+    addEventListener('scroll', updateProgress, {passive:true});
+    updateProgress();
+
+    const reveal = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          reveal.unobserve(entry.target);
+        }
+      });
+    }, {threshold:.08});
+    document.querySelectorAll('[data-reveal]').forEach(el => reveal.observe(el));
+
+    const copyButton = document.getElementById('copyTemplate');
+    const copyStatus = document.getElementById('copyStatus');
+    copyButton.addEventListener('click', async () => {
+      const text = document.getElementById('reportTemplate').innerText;
+      try {
+        await navigator.clipboard.writeText(text);
+        copyStatus.textContent = 'Скопировано';
+      } catch {
+        const area = document.createElement('textarea');
+        area.value = text;
+        document.body.appendChild(area);
+        area.select();
+        document.execCommand('copy');
+        area.remove();
+        copyStatus.textContent = 'Скопировано';
+      }
+      setTimeout(() => copyStatus.textContent = '', 1800);
+    });
+
+    const filters = [...document.querySelectorAll('.filter')];
+    const activities = [...document.querySelectorAll('.activity')];
+    const search = document.getElementById('activitySearch');
+    let currentFilter = 'all';
+
+    function applyFilters() {
+      const q = search.value.trim().toLowerCase();
+      activities.forEach(item => {
+        const kindOk = currentFilter === 'all' || item.dataset.kind === currentFilter;
+        const textOk = !q || (item.dataset.title + ' ' + item.innerText).toLowerCase().includes(q);
+        item.hidden = !(kindOk && textOk);
+      });
+    }
+
+    filters.forEach(btn => btn.addEventListener('click', () => {
+      filters.forEach(x => x.classList.remove('is-active'));
+      btn.classList.add('is-active');
+      currentFilter = btn.dataset.filter;
+      applyFilters();
+    }));
+    search.addEventListener('input', applyFilters);
+  </script>
+</body>
+</html>
